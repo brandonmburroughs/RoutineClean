@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "RoutineClean",
+  "description": "Automatically close pages that have been open longer than a set duration (e.g. two days).",
+  "version": "0.1.0",
+
+  "browser_action": {
+    "default_icon": "img/clean_icon.png",
+    "default_popup": "settings.html"
+  },
+  "background": {
+    "scripts": [
+      "js/closeTabs.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs",
+    "history",
+    "storage",
+    "alarms"
+  ]
+}
