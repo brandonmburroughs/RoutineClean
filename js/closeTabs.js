@@ -1,12 +1,23 @@
 // For every window, iterate through all of the tabs and perform an action
-function actionOnAllTabs(callback) {
+function actionOnAllTabs(callback, whitelistTabs) {
   chrome.windows.getAll({populate: true}, function(windows){
     // Iterate through all windows
     windows.forEach(function(window){
       //Iterate through all tabs
       window.tabs.forEach(function(tab){
+        // Check whitelist
+        tabInWhitelist = false;
+
+        for (i in whitelistTabs) {
+          if (tab.url.indexOf(whitelistTabs[i].trim()) > -1) {
+            tabInWhitelist = true;
+          }
+        }
+
         // Perform function on tab
-        callback(tab);
+        if (!tabInWhitelist) {
+          callback(tab);          
+        }
       });
     });
   });  
@@ -40,10 +51,11 @@ function closeExpiredTabs(tab, duration) {
 
 // Close all expired tabs
 function closeAllExpiredTabs() {
-  chrome.storage.sync.get('expirationInMilliseconds', function(obj) {
-    actionOnAllTabs(function(tab){
-      closeExpiredTabs(tab, obj['expirationInMilliseconds']);
-    });
+  chrome.storage.sync.get(['expirationInMilliseconds', 'tabWhitelistTextArea'], function(obj) {
+    whitelistTabs = obj['tabWhitelistTextArea'].split(',')
+      actionOnAllTabs(function(tab) {
+        closeExpiredTabs(tab, obj['expirationInMilliseconds']);
+    }, whitelistTabs);
   });
 }
 

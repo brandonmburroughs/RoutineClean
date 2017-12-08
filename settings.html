@@ -22,7 +22,7 @@
         <div class="content">
           <span class="is-size-5 has-text-weight-bold">Tab Duration</span>
           <span class="icon is-small has-text-info">
-            <i class="fa fa-info-circle" id="show-modal"></i>
+            <i class="fa fa-info-circle" id="show-tab-duration-modal"></i>
           </span>
         </div>
         <div class="modal" id="tab-duration-modal">
@@ -32,8 +32,8 @@
             "Tab Duration" is how long a tab can be open before it is automatically closed.  The default is 2 days.
             </div>
           </div>
-          <button class="modal-close is-large" id="modal-close" aria-label="close"></button>
-        </div>        
+          <button class="modal-close is-large" id="tab-duration-modal-close" aria-label="close"></button>
+        </div>
         <div class="field has-addons">
           <div class="control">
             <input class="input" id="expiration-dropdown-number" type="text" placeholder="2">
@@ -47,6 +47,23 @@
             </div>
           </div>
         </div>
+        <br>
+        <div class="content">
+          <span class="is-size-5 has-text-weight-bold">Tab Whitelist</span>
+          <span class="icon is-small has-text-info">
+            <i class="fa fa-info-circle" id="show-tab-whitelist-modal"></i>
+          </span>
+        </div>
+        <div class="modal" id="tab-whitelist-modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="notification is-info">
+            "Tab Whitelist" is the list of websites to exclude from closing due to expiration.  Tabs with these websites will be excluded and remain open indefinitely.  Enter a comma-separated list of domains to exclude from expiration (e.g. gmail.com, wunderlist.com, etc)!
+            </div>
+          </div>
+          <button class="modal-close is-large" id="tab-whitelist-modal-close" aria-label="close"></button>
+        </div>
+        <textarea class="textarea" id="tab-whitelist-textarea" placeholder="Enter a comma-separated list of domains to exclude from expiration (e.g. gmail.com, wunderlist.com, etc)!"></textarea>
       </div>
     </section>
 
